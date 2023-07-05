@@ -1,7 +1,7 @@
-import Trips from "./components/Trips"
+import Trips from './components/Trips'
 
 export const metadata = {
-  title: "About",
+  title: 'About',
 }
 
 const Page = () => {
