@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { NextAuthProvider } from "@/providers/auth";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -11,9 +12,10 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={poppins.className}>
         <NextAuthProvider>
+          <Header />
           {children}
         </NextAuthProvider>
       </body>
