@@ -8,19 +8,23 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-        'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "world": "url(/world-map.png)",
+      },
+      boxShadow: {
+        box: '1px 1px 3px solid black'
       },
       colors: {
         aero_c1: '#590BD8',
         aero_c2: '#312A4F',
-        aero_c3: '#DDD5EA'
+        aero_c3: '#DDD5EA',
+        aero_c4: '#F5F5F5',
+        aero_c5: '#717171'
       },
       textColor: {
         aero_t1: '#F5F5F5',
         aero_t2: '#BBBFBF',
-        aero_t3: '#717171'
+        aero_t3: '#717171',
+        aero_t4: '#312A4F'
       }
     },
   },
