@@ -18,7 +18,8 @@ module.exports = {
         aero_c2: '#312A4F',
         aero_c3: '#DDD5EA',
         aero_c4: '#F5F5F5',
-        aero_c5: '#717171'
+        aero_c5: '#717171',
+        aero_c6: '#ECECEC'
       },
       textColor: {
         aero_t1: '#F5F5F5',

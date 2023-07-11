@@ -21,7 +21,7 @@ const tripDetails = async ({ params }: { params: { tripid: string } }) => {
   if (!trip) return null;
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-white">
       <Image src={trip.coverImage} alt={trip.name} width={393} height={208} 
       className="w-full" />
       <div className="px-5 py-1">
@@ -35,7 +35,7 @@ const tripDetails = async ({ params }: { params: { tripid: string } }) => {
         </p>
       </div>
 
-      <Reservation price={trip.pricePerDay.toNumber()} />
+      <Reservation trip={trip} />
 
       <div className="h-[2px] bg-aero_c3 mx-5 my-10"/>
 
