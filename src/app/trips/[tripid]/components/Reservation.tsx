@@ -5,6 +5,7 @@ import DatePicker from "@/components/DatePicker"
 import Input from "@/components/Input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Trip } from "@prisma/client"
+import { differenceInDays } from "date-fns"
 import { Controller, useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -32,7 +33,8 @@ const Reservation = ({ trip }: tripInfo) => {
   }
 
   const watchStartDate = watch("startDate")
-
+  const watchEndDate = watch("endDate")
+  
   return (
       <div className="flex flex-col gap-3 my-4 px-5">
         <div className="flex gap-3">
@@ -59,7 +61,7 @@ const Reservation = ({ trip }: tripInfo) => {
             onChange={ field.onChange }
             selected={ field.value }
             error={ !!errors.endDate }
-            errorMessage={  errors.endDate?.message }
+            errorMessage={ errors.endDate?.message }
             maxDate={ trip.endDate }
             minDate={ watchStartDate ?? trip.startDate }
             className="w-full" />
@@ -73,10 +75,11 @@ const Reservation = ({ trip }: tripInfo) => {
         type="number" />
 
         <div className="flex justify-between text-aero_c2 text-md py-2 font-medium">
-          <p>Total (7 Dias)</p>
-          <span>R$3000</span>
+          <p>Total</p>
+          <span>{watchStartDate && watchEndDate ?
+           `R$${differenceInDays(watchEndDate, watchStartDate) * Number(trip.pricePerDay)}` : 'R$0'}</span>
         </div>
-
+        
         <Button onClick={() => handleSubmit(onSubmit)()}>Reservar</Button>
     </div>
   )
