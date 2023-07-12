@@ -28,8 +28,17 @@ const Reservation = ({ trip }: tripInfo) => {
     resolver: zodResolver(ReservationSchema),
   })
 
-  const onSubmit = (data: any) => {
-    console.log({ data })
+  const onSubmit = async (data: ReservationData) => {
+    const response = await fetch("http://localhost:3000/api/trips/check", {
+      method: "POST",
+      body: JSON.stringify({
+        startDate: data.startDate,
+        endDate: data.endDate,
+        tripId: trip.id
+      })
+    })
+    
+    const res = await response.json()
   }
 
   const watchStartDate = watch("startDate")
