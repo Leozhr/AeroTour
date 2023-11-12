@@ -17,7 +17,7 @@ const ReservationSchema = z.object({
   startDate: z.date({ required_error: "Este campo é obrigatório." }).nullable(),
   endDate: z.date({ required_error: "Este campo é obrigatório." }).nullable(),
   guests: z.number({ invalid_type_error: "Este campo é obrigatório." })
-  .min(2, "Mínimo de 2 hóspedes")
+  .min(1, "Mínimo de 1 hóspede")
   .max(10, "Máximo de 10 hóspedes"),
 })
 
@@ -71,7 +71,6 @@ const Reservation = ({ trip }: tripInfo) => {
             selected={ field.value }
             error={ !!errors.endDate }
             errorMessage={ errors.endDate?.message }
-            maxDate={ trip.endDate }
             minDate={ watchStartDate ?? trip.startDate }
             className="w-full" />
             )} />
