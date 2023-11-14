@@ -1,48 +1,49 @@
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
-import ReactCountryFlag from "react-country-flag";
-import Description from "./components/Description";
-import Location from "./components/Location";
-import Reservation from "./components/Reservation";
 
-async function getTripID(params: string) {
+import React from "react";
+import TripHeader from "./components/TripHeader";
+import TripReservation from "./components/TripReservation";
+import TripDescription from "./components/TripDescription";
+import TripHighlights from "./components/TripHighlights";
+import TripLocation from "./components/TripLocation";
+
+const getTripDetails = async (tripId: string) => {
   const trip = await prisma.trip.findUnique({
     where: {
-      id: params,
+      id: tripId,
     },
-  })
+  });
 
   return trip;
-}
+};
 
-const tripDetails = async ({ params }: { params: { tripid: string } }) => {
-  const trip = await getTripID(params.tripid);
+const TripDetails = async ({ params }: { params: { tripId: string } }) => {
+  const trip = await getTripDetails(params.tripId);
 
   if (!trip) return null;
 
   return (
-    <div className="w-full bg-white">
-      <Image src={trip.coverImage} alt={trip.name} width={393} height={208} 
-      className="w-full" />
-      <div className="px-5 py-1">
-        <h3 className="text-aero_c2 font-semibold text-2xl mt-2">{trip.name}</h3>
-        <div className="flex items-center gap-1 my-[2px]">
-          <ReactCountryFlag countryCode={trip.countryCode} svg />
-          <p className="text-md text-aero_c5">{trip.location}</p>
+    <div className="container mx-auto lg:px-40 lg:pt-10">
+      <TripHeader trip={trip} />
+      <div className="flex flex-col lg:flex-row lg:mt-12 lg:gap-20">
+        <div className="lg:order-2">
+          <TripReservation
+            tripId={trip.id}
+            pricePerDay={trip.pricePerDay as any}
+            tripStartDate={trip.startDate}
+            tripEndDate={trip.endDate}
+            maxGuests={trip.maxGuests}
+          />
         </div>
-        <p className="text-md text-aero_c5">
-          <span className="text-aero_c1 font-semibold">R${trip.pricePerDay.toString()}</span> por dia
-        </p>
+
+        <div className="lg:order-1">
+          <TripDescription description={trip.description} />
+          <TripHighlights highlights={trip.highlights} />
+        </div>
       </div>
-
-      <Reservation trip={trip} />
-
-      <div className="h-[2px] bg-aero_c3 mx-5 my-10"/>
-
-      <Description trip={trip} />
-      <Location trip={trip}/>
+      <TripLocation locationDescription={trip.locationDescription} location={trip.location} />
     </div>
-  )
-}
+  );
+};
 
-export default tripDetails
+export default TripDetails;

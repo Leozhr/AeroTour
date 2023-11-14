@@ -5,11 +5,11 @@ CREATE TABLE "Trip" (
     "location" TEXT NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
-    "priceForNight" DECIMAL(8,2) NOT NULL,
+    "pricePerDay" DECIMAL(8,2) NOT NULL,
     "description" TEXT NOT NULL,
     "coverImage" TEXT NOT NULL,
-    "images" TEXT[],
-    "topics" TEXT[],
+    "imagesUrl" TEXT[],
+    "highlights" TEXT[],
     "maxGuests" INTEGER NOT NULL,
 
     CONSTRAINT "Trip_pkey" PRIMARY KEY ("id")
@@ -22,7 +22,7 @@ CREATE TABLE "TripReservation" (
     "userId" TEXT NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3) NOT NULL,
-    "purchage" DECIMAL(8,2) NOT NULL,
+    "totalPaid" DECIMAL(8,2) NOT NULL,
 
     CONSTRAINT "TripReservation_pkey" PRIMARY KEY ("id")
 );

@@ -1,13 +1,13 @@
-import Categories from "./components/Categories";
-import RecomendedTrips from "./components/RecomendedTrips";
+import QuickSearch from "./components/QuickSearch";
+import RecommendedTrips from "./components/RecommendedTrips";
 import TripSearch from "./components/TripSearch";
 
 export default function Home() {
   return (
     <div>
       <TripSearch />
-      <Categories />
-      <RecomendedTrips />
-    </div> 
-  )
+      <QuickSearch />
+      <RecommendedTrips />
+    </div>
+  );
 }
