@@ -8,13 +8,13 @@ import ToastProvider from "@/providers/toast";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"] });
 
 export const metadata = {
-  title: "FSW Trips",
-  description: "Sistema de Reserva de Viagens TOP!",
+  title: "AeroTour",
+  description: "Sistema de Reserva de Viagens!",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body className={poppins.className}>
         <NextAuthProvider>
           <ToastProvider>
